@@ -35,6 +35,9 @@ const ProjectCard = ({ project }) => {
         <img 
           src={imageUrl || fallbackImage} 
           alt={title}
+          onError={(e) => {
+            e.target.src = fallbackImage;
+          }}
         />
       </div>
 

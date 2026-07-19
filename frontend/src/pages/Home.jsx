@@ -11,7 +11,7 @@ const Home = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState({ type: '', text: '' }); // 'success', 'error', 'loading'
 
-  const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const backendUrl = import.meta.env.VITE_API_URL || '/api';
 
   useEffect(() => {
     const fetchProjects = async () => {

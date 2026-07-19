@@ -10,6 +10,7 @@ const Home = () => {
   // Contact form state
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState({ type: '', text: '' }); // 'success', 'error', 'loading'
+  const [profileImageFailed, setProfileImageFailed] = useState(false);
 
   const backendUrl = import.meta.env.VITE_API_URL || '/api';
 
@@ -112,22 +113,22 @@ const Home = () => {
             </div>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div style={{ position: 'relative', width: '320px', height: '320px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', padding: '6px', boxShadow: '0 20px 40px rgba(99, 102, 241, 0.3)', overflow: 'hidden' }}>
-              <img 
-                src="/profile.jpg" 
-                alt="Jayesh Khatke" 
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'flex';
-                }}
-                style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
-              />
-              <div style={{ width: '100%', height: '100%', borderRadius: '50%', background: 'var(--bg-primary)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem' }}>
-                <span style={{ fontSize: '3rem', marginBottom: '10px' }}>💻</span>
-                <span style={{ fontFamily: 'var(--font-primary)', fontWeight: 800, fontSize: '1.4rem' }}>&lt;Code /&gt;</span>
-                <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '5px' }}>MERN & DSA</span>
-              </div>
+              {!profileImageFailed ? (
+                <img 
+                  src="/profile.jpg" 
+                  alt="Jayesh Khatke" 
+                  onError={() => setProfileImageFailed(true)}
+                  style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
+                />
+              ) : (
+                <div style={{ width: '100%', height: '100%', borderRadius: '50%', background: 'var(--bg-primary)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem' }}>
+                  <span style={{ fontSize: '3rem', marginBottom: '10px' }}>💻</span>
+                  <span style={{ fontFamily: 'var(--font-primary)', fontWeight: 800, fontSize: '1.4rem' }}>&lt;Code /&gt;</span>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '5px' }}>MERN & DSA</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
